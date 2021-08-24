@@ -23,5 +23,3 @@ class students(db.Model, UserMixin):
     roll_no = db.Column(db.Integer(), nullable=False)
     def __repr__(self):
         return f'Item {self.name}'
-
-# $2b$12$S/L3m9FB3sVI1N/dRJAnfOm6vtRWtkKGk/sw34SuJs3eT4u/ndQYW

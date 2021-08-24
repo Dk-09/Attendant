@@ -30,20 +30,21 @@ def loginpage():
             flash("Incorrect username or password", category='danger')
     return render_template('/login/index.html', form=form)
 
-@app.route('/admission')
+@app.route('/admission', methods=['GET','POST'])
+@login_required
 def register_page():
     form = registerform()
     if form.validate_on_submit():
-        user_to_create = students(name = form.name.data,email = form.email.data,enroll_no=form.enroll_no.data,roll_no=form.roll_no.data)
+        user_to_create = students(name = form.name.data,mail = form.mail.data,enroll_no=form.enroll_no.data,roll_no=form.roll_no.data)
         db.session.add(user_to_create)
         db.session.commit()
-        render_template('<script>alert("User Added");</script>')
-        return redirect('/home')
+        return '<script>alert("User Added");</script>'
+        
     if form.errors != {}:
         for err_msg in form.errors.values():
-            flash(f'{err_msg}', category='danger')
+            flash(f'{err_msg[0]}', category='danger')
     
-    return render_template('/dashboard/new_admission.html')
+    return render_template('/dashboard/new_admission.html', form=form)
 
 @app.route('/shutdown')
 @login_required
@@ -52,4 +53,4 @@ def shutdown():
     if func is None:
         raise RuntimeError('Not running with the Werkzeug Server')
     func()
-    return "Shuting down..."
+    return "Shuting down...you can close this tab..."
