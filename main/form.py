@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import ValidationError, DataRequired, Email
+from wtforms import StringField, PasswordField, SubmitField, IntegerField
+from wtforms.validators import ValidationError, DataRequired, Email, NumberRange
 from main.model import students
 
 class loginform(FlaskForm):
@@ -19,10 +19,10 @@ class registerform(FlaskForm):
         enroll_no = students.query.filter_by(enroll_no=enroll_no_to_check.data).first()
         if enroll_no:
             raise ValidationError('Enrollment number already exists! Please try a different Enrollment number')
-
+        
 
     name = StringField(validators=[DataRequired()])
     mail = StringField(validators=[Email(), DataRequired()])
-    enroll_no = StringField(validators = [DataRequired()])
-    roll_no = StringField(validators = [DataRequired()])
+    enroll_no = IntegerField(validators = [DataRequired()])
+    roll_no = IntegerField(validators = [DataRequired()])
     submit=SubmitField()

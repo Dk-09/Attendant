@@ -51,8 +51,7 @@ def register_page():
         user_to_create = students(name = form.name.data,mail = form.mail.data,enroll_no=form.enroll_no.data,roll_no=form.roll_no.data)
         db.session.add(user_to_create)
         db.session.commit()
-        flash('<script>alert("User Added");</script>')
-        return render_template(url_for('home'))
+        flash('User Added', 'info')
         
     if form.errors != {}:
         for err_msg in form.errors.values():
