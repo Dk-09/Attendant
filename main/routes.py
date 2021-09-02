@@ -1,4 +1,5 @@
-from flask import render_template, redirect, url_for, flash, request
+from itertools import count
+from flask import render_template, redirect, url_for, flash, request, session
 from flask_login.utils import logout_user
 from main import app, db
 from main.form import loginform, registerform
@@ -6,6 +7,7 @@ from main.model import login, students
 from flask_login import login_user, logout_user, login_required, current_user
 from flask.helpers import flash
 from functools import wraps
+
 
 @app.route('/')
 @app.route('/home')
@@ -21,15 +23,17 @@ def start():
 @app.route('/student')
 @login_required
 def student():
-    return render_template('/dashboard/student.html')
+    items = students.query.all()
+    return render_template('/dashboard/student.html', items=items)
 
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('loginpage'))
 
+
 @app.route('/login', methods=['GET','POST'])
-def loginpage():
+def loginpage(): 
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     else:
@@ -42,6 +46,8 @@ def loginpage():
             else:
                 flash("Incorrect username or password", category='danger')
         return render_template('/login/index.html', form=form)
+
+    
 
 @app.route('/admission', methods=['GET','POST'])
 @login_required
@@ -64,7 +70,5 @@ def register_page():
 def shutdown():
     logout_user()
     func = request.environ.get('werkzeug.server.shutdown')
-    if func is None:
-        raise RuntimeError('Not running with the Werkzeug Server')
     func()
     return "Shuting down...you can close this tab..."
