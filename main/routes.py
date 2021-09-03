@@ -1,12 +1,15 @@
 from itertools import count
 from flask import render_template, redirect, url_for, flash, request, session
+from flask.templating import render_template_string
 from flask_login.utils import logout_user
+from wtforms.compat import iteritems
 from main import app, db
 from main.form import loginform, registerform
 from main.model import login, students
 from flask_login import login_user, logout_user, login_required, current_user
 from flask.helpers import flash
 from functools import wraps
+from sqlalchemy.orm.session import Session
 
 
 @app.route('/')
@@ -20,11 +23,19 @@ def home():
 def start():
     return render_template('/dashboard/start.html')
 
-@app.route('/student')
+@app.route('/student', methods=['GET','POST'])
 @login_required
 def student():
     items = students.query.all()
     return render_template('/dashboard/student.html', items=items)
+
+@app.route('/delete_student/<string:ids>', methods=['POST'])
+@login_required
+def delete_student(ids):
+    a = students.query.filter_by(id=ids).delete()
+    db.session.commit()
+    return redirect(url_for('student'))
+    
 
 @app.route('/logout')
 def logout():
@@ -58,6 +69,7 @@ def register_page():
         db.session.add(user_to_create)
         db.session.commit()
         flash('User Added', 'info')
+        
         
     if form.errors != {}:
         for err_msg in form.errors.values():

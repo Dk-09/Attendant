@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, IntegerField
+from wtforms import StringField, PasswordField, SubmitField, IntegerField, HiddenField
 from wtforms.validators import ValidationError, DataRequired, Email, NumberRange
 from main.model import students
 
@@ -26,3 +26,8 @@ class registerform(FlaskForm):
     enroll_no = IntegerField(validators = [DataRequired()])
     roll_no = IntegerField(validators = [DataRequired()])
     submit=SubmitField()
+
+class delete_user(FlaskForm):
+    id = HiddenField()
+    delete = SubmitField()
+

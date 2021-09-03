@@ -48,7 +48,7 @@ w3-custom2
 	align-items: center;
 	text-align:center;
   
-	padding: 90px 90px 88px 148px;
+	padding: 90px 90px 88px 90px;
   
 }
 {% endblock %}
@@ -56,30 +56,30 @@ w3-custom2
 {% block content %}
 	<div class="conatiner">
 		<div class="container2">
-			<table class="table table-borderless table-condensed table-hover">
+			<table class="table table-borderless table-condensed table-hover">			
 				<thead>
 					<tr>
-						<!-- Your Columns HERE -->
-						<th scope="col">ID</th>
+						<!-- Your Columns HERE -->	
+						<th scope="col">Roll number</th>					
 						<th scope="col">Name</th>
-						<th scope="col">Enrollment number</th>
-						<th scope="col">Roll number</th>
+						<th scope="col">Enrollment number</th>				
 						<th scope="col">Delete</th>
 					</tr>
 				</thead>
 				<tbody>
-						{% for item in items %}
-						<tr>
-							<td>{{ item.id }}</td>
-							<td>{{ item.name }}</td>
-							<td>{{ item.enroll_no }}</td>
-							<td>{{ item.roll_no }}$</td>
-							<td>
+					{% for item in items %}
+					<form method="POST" action="{{ url_for('delete_student', ids=item.id) }}">
+						<tr>						
+							<td>{{ item.roll_no }}</td>								
+							<td>{{ item.name }}</td>						
+							<td>{{ item.enroll_no }}</td>							
+							<td>								
 								<button class="btn btn-outline btn-danger">delete</button>
-							</td>
-						</tr>
-						{% endfor %}
+							</td>							
+						</tr>						
 				</tbody>
+				</form>
+				{% endfor %}			
 			</table>
 		</div>
 	</div>
