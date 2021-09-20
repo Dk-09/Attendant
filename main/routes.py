@@ -10,6 +10,8 @@ from flask_login import login_user, logout_user, login_required, current_user
 from flask.helpers import flash
 from functools import wraps
 from sqlalchemy.orm.session import Session
+from main import cam
+import os
 
 
 @app.route('/')
@@ -29,11 +31,16 @@ def student():
     items = students.query.all()
     return render_template('/dashboard/student.html', items=items)
 
-@app.route('/delete_student/<string:ids>', methods=['POST'])
+@app.route('/delete_student/<string:ids>/<string:name>', methods=['POST'])
 @login_required
-def delete_student(ids):
+def delete_student(ids, name):
+    path = os.getcwd()
+    fullpath = path + "/main/img/" + name + ".jpg"
+    print(fullpath)
+    os.remove(fullpath)
     students.query.filter_by(id=ids).delete()
     db.session.commit()
+    
     return redirect(url_for('student'))
     
 
@@ -65,15 +72,18 @@ def loginpage():
 def register_page():
     form = registerform()
     if form.validate_on_submit():
+        if form.name.data:
+            cam.camera(form.name.data)
         user_to_create = students(name = form.name.data,mail = form.mail.data,enroll_no=form.enroll_no.data,roll_no=form.roll_no.data)
         db.session.add(user_to_create)
         db.session.commit()
         flash('User Added', 'info')
         
-        
     if form.errors != {}:
         for err_msg in form.errors.values():
             flash(f'{err_msg[0]}', category='danger')
+    
+    
     
     return render_template('/dashboard/new_admission.html', form=form)
 

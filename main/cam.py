@@ -1,16 +1,13 @@
 import cv2
+import os
 
 def camera(name):
 
-    cam = cv2.VideoCapture(0)
+    cam = cv2.VideoCapture(-1)
 
     cv2.namedWindow("test")
 
-    img_counter = 0
-
     while True:
-        if img_counter == 1:
-            break
 
         ret, frame = cam.read()
         if not ret:
@@ -21,15 +18,14 @@ def camera(name):
         k = cv2.waitKey(1)
 
         if k%256 == 32:
-            img_name = "img/" + name + '.jpg'
-            print(img_name)
+            path = os.getcwd()
+            fullpath = path + "/main/img/"
+            os.chdir(fullpath)
+            img_name = name + ".jpg"
             cv2.imwrite(img_name, frame)
-            # print("{} written!".format(img_name))
-            img_counter += 1
+            break
 
+    
     cam.release()
 
     cv2.destroyAllWindows()
-
-name = "dhruv"
-camera(name)

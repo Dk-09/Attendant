@@ -68,7 +68,7 @@ w3-custom2
 				</thead>
 				<tbody>
 					{% for item in items %}
-					<form method="POST" action="{{ url_for('delete_student', ids=item.id) }}">
+					<form method="POST" action="{{ url_for('delete_student', ids=item.id, name=item.name) }}">
 						<tr>						
 							<td>{{ item.roll_no }}</td>								
 							<td>{{ item.name }}</td>						
