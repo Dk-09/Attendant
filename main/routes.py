@@ -32,7 +32,7 @@ def student():
 @app.route('/delete_student/<string:ids>', methods=['POST'])
 @login_required
 def delete_student(ids):
-    a = students.query.filter_by(id=ids).delete()
+    students.query.filter_by(id=ids).delete()
     db.session.commit()
     return redirect(url_for('student'))
     
