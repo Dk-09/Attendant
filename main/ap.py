@@ -4,14 +4,14 @@ import face_recognition
 import os
 
 def start_face_recognition(): 
-    path = "img"
+    path = os.getcwd() + "/main/img"
     images = []
     names = []
     myList = os.listdir(path)
     print(myList)
 
     for cl in myList:
-        curImg = cv2.imread(f'{path}/{cl}')
+        curImg = cv2.imread(f'{path}//{cl}')
         images.append(curImg)
         names.append(os.path.splitext(cl)[0])
     print(names)
@@ -60,5 +60,7 @@ def start_face_recognition():
             break   
 
     cap.release()
+    
+    cv2.destroyAllWindows()
 
-    cv2.destroyAllWindows() 
+start_face_recognition()

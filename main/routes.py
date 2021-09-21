@@ -11,7 +11,6 @@ from flask.helpers import flash
 from functools import wraps
 from sqlalchemy.orm.session import Session
 from main import cam
-from main import ap
 import os
 
 @app.route('/')
@@ -24,10 +23,10 @@ def home():
 @login_required
 def start():
     if request.method == 'POST':    
-        path_to_img = os.getcwd() + "/img/"
+        path_to_img = os.getcwd() + "/main/img/"
         dir = os.listdir(path_to_img)
         if len(dir) > 0:
-            ap.start_face_recognition()
+            os.system("python main/ap.py")
         else:
             return redirect(url_for('register_page'))
     else:

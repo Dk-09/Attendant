@@ -17,7 +17,7 @@ class login(db.Model, UserMixin):
 
 class students(db.Model, UserMixin):
     id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String(length=30), nullable=False)
+    name = db.Column(db.String(length=30), nullable=False, unique=True)
     mail = db.Column(db.String(length=30), nullable=False, unique=True)
     enroll_no = db.Column(db.Integer(), nullable=False, unique=True)
     roll_no = db.Column(db.Integer(), nullable=False)
