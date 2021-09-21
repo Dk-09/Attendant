@@ -19,6 +19,7 @@ def camera(name):
 
         if k%256 == 32:
             path = os.getcwd()
+            path = path + "/img/"
             os.chdir(path)
             img_name = name + ".jpg"
             cv2.imwrite(img_name, frame)

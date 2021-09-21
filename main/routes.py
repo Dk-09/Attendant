@@ -11,8 +11,8 @@ from flask.helpers import flash
 from functools import wraps
 from sqlalchemy.orm.session import Session
 from main import cam
+from main import ap
 import os
-
 
 @app.route('/')
 @app.route('/home')
@@ -20,9 +20,18 @@ import os
 def home():
     return render_template('/dashboard/home.html')
 
-@app.route('/start')
+@app.route('/start', methods=['GET','POST'])
 @login_required
 def start():
+    if request.method == 'POST':    
+        path_to_img = os.getcwd() + "/img/"
+        dir = os.listdir(path_to_img)
+        if len(dir) > 0:
+            ap.start_face_recognition()
+        else:
+            return redirect(url_for('register_page'))
+    else:
+        return render_template('/dashboard/start.html')
     return render_template('/dashboard/start.html')
 
 @app.route('/student', methods=['GET','POST'])
@@ -36,7 +45,6 @@ def student():
 def delete_student(ids, name):
     path = os.getcwd()
     fullpath = path + "/main/img/" + name + ".jpg"
-    print(fullpath)
     os.remove(fullpath)
     students.query.filter_by(id=ids).delete()
     db.session.commit()
@@ -94,3 +102,4 @@ def shutdown():
     func = request.environ.get('werkzeug.server.shutdown')
     func()
     return "Shuting down...you can close this tab..."
+
