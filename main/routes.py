@@ -10,7 +10,6 @@ from flask_login import login_user, logout_user, login_required, current_user
 from flask.helpers import flash
 from functools import wraps
 from sqlalchemy.orm.session import Session
-from main import cam
 import os
 
 @app.route('/')
@@ -80,7 +79,7 @@ def register_page():
     form = registerform()
     if form.validate_on_submit():
         if form.name.data:
-            cam.camera(form.name.data)
+            os.system(f"python main/cam.py {form.name.data}")
         user_to_create = students(name = form.name.data,mail = form.mail.data,enroll_no=form.enroll_no.data,roll_no=form.roll_no.data)
         db.session.add(user_to_create)
         db.session.commit()
