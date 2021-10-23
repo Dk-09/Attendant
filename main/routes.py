@@ -25,7 +25,7 @@ def start():
         path_to_img = os.getcwd() + "/main/img/"
         dir = os.listdir(path_to_img)
         if len(dir) > 0:
-            os.system("python main/ap.py")
+            os.system("python3 main/ap.py")
         else:
             return redirect(url_for('register_page'))
     else:
@@ -79,7 +79,7 @@ def register_page():
     form = registerform()
     if form.validate_on_submit():
         if form.name.data:
-            os.system(f"python main/cam.py {form.name.data}")
+            os.system(f"python3 main/cam.py {form.name.data}")
         user_to_create = students(name = form.name.data,mail = form.mail.data,enroll_no=form.enroll_no.data,roll_no=form.roll_no.data)
         db.session.add(user_to_create)
         db.session.commit()

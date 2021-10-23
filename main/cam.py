@@ -25,10 +25,6 @@ while True:
         os.chdir("../../")
         break
 
-    if k%256 == 113:
-        print("escape hit closing app")
-        break
-
 
 cam.release()
 cv2.destroyAllWindows()
