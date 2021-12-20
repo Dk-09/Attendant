@@ -23,6 +23,8 @@ def home():
 def start():
     if request.method == 'POST':    
         path_to_img = os.getcwd() + "/main/img/"
+        if not os.path.exists(path_to_img):
+            os.mkdir(path_to_img)
         dir = os.listdir(path_to_img)
         if len(dir) > 0:
             os.system("python3 main/ap.py")
