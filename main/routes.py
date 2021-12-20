@@ -42,7 +42,7 @@ def student():
 @login_required
 def delete_student(ids, name):
     path = os.getcwd()
-    fullpath = path + "/main/img/" + name + ".jpg"
+    fullpath = path + "/main/img/" + name.strip() + ".jpg"
     os.remove(fullpath)
     students.query.filter_by(id=ids).delete()
     db.session.commit()

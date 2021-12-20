@@ -129,7 +129,7 @@ iframe {
 [ Contact 1 ]*/
 
 .contact1 {
-  width: 90%;
+  width: 82%;
   min-height: 100%;
   padding: 15px;
 
@@ -178,11 +178,11 @@ iframe {
 
 
 .container-contact1 {
-  width: 1200px;
+  width: auto;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
-
+  height : auto;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -192,7 +192,7 @@ iframe {
   justify-content: space-between;
   align-items: center;
 
-  padding: 90px 90px 88px 148px;
+  padding: 70px 70px;
 
 }
 
