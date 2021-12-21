@@ -12,15 +12,19 @@ w3-custom2
 {% endblock %}
 
 {% block class %}
+
+.for-padding
+{
+	padding-bottom: 100px;
+}
+
 .conatiner 
 {
 	width: 82%;
 	min-height: 100%;
-	padding: 15px;
-	
+	padding: 15px;	
 	background: -webkit-linear-gradient(to right,#9786f0 , #fbc7d4);  
-	background: linear-gradient(to right, #9786f0 ,#fbc7d4);
-  
+	background: linear-gradient(to right, #9786f0 ,#fbc7d4);  
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -moz-box;
@@ -32,12 +36,11 @@ w3-custom2
 	margin-left: 260px;
 }
 .container2{
-	width: 1000px;
+	width: 900px;
 	height: 190px;
 	background: #fff;
 	border-radius: 10px;
-	overflow: hidden;
-  
+	overflow: hidden;  
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -moz-box;
@@ -46,8 +49,8 @@ w3-custom2
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
-	text-align:center;
-  
+	text-align:center;	
+	padding : 20px;
 }
 {% endblock %}
 
@@ -55,15 +58,16 @@ w3-custom2
 	<div class="conatiner">
 		<div class="container2">
 			<table class="table table-borderless table-condensed table-hover">			
+				<div class="for-padding">
 				<thead>
 					<tr>
-						<!-- Your Columns HERE -->	
 						<th scope="col">Roll number</th>					
 						<th scope="col">Name</th>
 						<th scope="col">Enrollment number</th>				
 						<th scope="col">Delete</th>
 					</tr>
 				</thead>
+				</div>
 				<tbody>
 					{% for item in items %}
 					<form method="POST" action="{{ url_for('delete_student', ids=item.id, name=item.name) }}">

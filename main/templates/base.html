@@ -13,15 +13,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="static/home/css/style.css">
+<link rel="stylesheet" href="static/record/css/style.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-<link rel="stylesheet" type="text/css" href="static/home/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="static/record/css/bootstrap.css">
 
 
 <style>
 {% block class %}
 
 {% endblock %}
+
 body,h1,h2,h3,h4,h5 
 {
   font-family: "Poppins", sans-serif;
@@ -58,11 +59,11 @@ body
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar {% block color %} {% endblock %} w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:250px;"><br>
   <div class="w3-container">
-    <h3 class="w3-padding-64 logo"><b><a href="{{ url_for('home') }}" style="text-decoration: none;">Attendant</a></b></h3>
+    <h3 class="w3-padding-64 logo"><b><a href="{{ url_for('start') }}" style="text-decoration: none;">Attendant</a></b></h3>
   </div>
   <div class="w3-bar-block">
-    <a href="{{ url_for('home') }}" class="w3-bar-item w3-button w3-hover-white">Home</a>
     <a href="{{ url_for('start') }}" class="w3-bar-item w3-button w3-hover-white">Start</a>
+    <a href="{{ url_for('record') }}" class="w3-bar-item w3-button w3-hover-white">Record</a>
     <a href="{{ url_for('register_page') }}" class="w3-bar-item w3-button w3-hover-white">New Admission</a>
     <a href="{{ url_for('student') }}" class="w3-bar-item w3-button w3-hover-white">Students</a>
     <a href="{{ url_for('logout') }}" class="w3-bar-item w3-button w3-hover-white ">Logout</a>

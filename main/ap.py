@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 import face_recognition
-import os
+import os, sys
 
 def start_face_recognition(): 
     path = os.getcwd() + "/main/img"
@@ -18,10 +18,14 @@ def start_face_recognition():
 
     def findEncoding(images):
         encodeList = []
-        for img in images:
+        for img,name in zip(images,names):
             img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB) # converting stored image to RGB
-            encode = face_recognition.face_encodings(img)[0] # finding face encoding
-            encodeList.append(encode)
+            try:
+                encode = face_recognition.face_encodings(img)[0] # finding face encoding
+                encodeList.append(encode)
+            except:
+                print("Error finding face retake the image : " + name)
+            
         return encodeList
 
     encodeListKnown = findEncoding(images)

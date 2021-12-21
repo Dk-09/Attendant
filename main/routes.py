@@ -13,11 +13,6 @@ from sqlalchemy.orm.session import Session
 import os
 
 @app.route('/')
-@app.route('/home')
-@login_required
-def home():
-    return render_template('/dashboard/home.html')
-
 @app.route('/start', methods=['GET','POST'])
 @login_required
 def start():
@@ -33,6 +28,11 @@ def start():
     else:
         return render_template('/dashboard/start.html')
     return render_template('/dashboard/start.html')
+
+@app.route('/record')
+@login_required
+def record():
+    return render_template('/dashboard/record.html')
 
 @app.route('/student', methods=['GET','POST'])
 @login_required
@@ -68,7 +68,7 @@ def loginpage():
             attempted_user = login.query.filter_by(username=form.username.data).first()
             if attempted_user and attempted_user.check_password_correction(attempted_password=form.password.data):
                 login_user(attempted_user)
-                return redirect(url_for('home'))
+                return redirect(url_for('start'))
             else:
                 flash("Incorrect username or password", category='danger')
         return render_template('/login/index.html', form=form)
@@ -90,9 +90,6 @@ def register_page():
     if form.errors != {}:
         for err_msg in form.errors.values():
             flash(f'{err_msg[0]}', category='danger')
-    
-    
-    
     return render_template('/dashboard/new_admission.html', form=form)
 
 @app.route('/shutdown')
