@@ -10,6 +10,7 @@ from flask.helpers import flash
 from functools import wraps
 from sqlalchemy.orm.session import Session
 import os
+import csv
 
 @app.route('/')
 @app.route('/start', methods=['GET','POST'])
@@ -32,7 +33,17 @@ def start():
 @app.route('/record')
 @login_required
 def record():
-    return render_template('/dashboard/record.html')
+    files = os.listdir("/main/database/")
+    return render_template('/dashboard/record.html',files=files)
+
+@app.route('/show_file/<string:fname>')
+@login_required
+def show_file(fname):
+    file = open("main/database/" + fname)
+    print(type(file))
+    csvreader = csv.reader(file)
+    
+    return render_template('/dashboard/show_file.html', csvreader=csvreader)
 
 @app.route('/student', methods=['GET','POST'])
 @login_required

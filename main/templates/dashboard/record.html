@@ -35,7 +35,10 @@ w3-custom1
 
 {% block content %}
 	<div class="conatiner">
-		
+		{% for file in files %}
+		<a href="{{ url_for('show_file', fname=file) }}">{{ file }}</a>
+		<br>
+		{% endfor %}
 	</div>
 {% endblock %}
 
