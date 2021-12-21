@@ -1,20 +1,21 @@
 import cv2
 import numpy as np
 import face_recognition
-import os, sys
+import os
 
 def start_face_recognition(): 
     path = os.getcwd() + "/main/img"
     images = []
     names = []
     myList = os.listdir(path)
-    print(myList)
+    for element in myList:
+        print("[+] Loading Images : ", element)
 
     for cl in myList:
         curImg = cv2.imread(f'{path}//{cl}')
         images.append(curImg)
         names.append(os.path.splitext(cl)[0])
-    print(names)
+    print("[+] Loadig Names : " ,names)
 
     def findEncoding(images):
         encodeList = []
@@ -24,12 +25,12 @@ def start_face_recognition():
                 encode = face_recognition.face_encodings(img)[0] # finding face encoding
                 encodeList.append(encode)
             except:
-                print("Error finding face retake the image : " + name)
+                print("[-] Error finding face retake the image : " + name)
             
         return encodeList
 
     encodeListKnown = findEncoding(images)
-    print("Encoding done")
+    print("[+] Encoding done")
 
     cap = cv2.VideoCapture(0) # starting stream
 
@@ -44,7 +45,6 @@ def start_face_recognition():
         for encodeFace,faceLoc in zip(encodeCurFrame,facesCurFrame):
             matches = face_recognition.compare_faces(encodeListKnown,encodeFace)
             faceDis = face_recognition.face_distance(encodeListKnown,encodeFace)
-            # print(faceDis)
             matchIndex = np.argmin(faceDis)
 
             if matches[matchIndex]:
@@ -60,7 +60,7 @@ def start_face_recognition():
         k = cv2.waitKey(1)
 
         if k%256 == 27 or k%256 == 113:
-            print("escape hit closing app")
+            print("[-] Escape hit closing app...")
             break   
 
     cap.release()

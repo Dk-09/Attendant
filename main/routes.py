@@ -2,7 +2,6 @@ from itertools import count
 from flask import render_template, redirect, url_for, flash, request, session
 from flask.templating import render_template_string
 from flask_login.utils import logout_user
-from wtforms.compat import iteritems
 from main import app, db
 from main.form import loginform, registerform
 from main.model import login, students
@@ -20,6 +19,7 @@ def start():
         path_to_img = os.getcwd() + "/main/img/"
         if not os.path.exists(path_to_img):
             os.mkdir(path_to_img)
+            print("[*] Making img file...")
         dir = os.listdir(path_to_img)
         if len(dir) > 0:
             os.system("python3 main/ap.py")
