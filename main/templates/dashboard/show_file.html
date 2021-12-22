@@ -1,3 +1,40 @@
+</html>
+</body>
+<head>
+    
+<style>
+*
+{
+    text-align: center;
+    align-items: center;
+}
+
+table, td, th {
+  border: 1px solid black;
+}
+
+table {
+  width: 20%;
+  border-collapse: collapse;
+}
+
+</style>
+
+</head>
+<table>
+<tr>
+<th>Time</th>
+<th>Name</th>
+</tr>
+
 {% for row in csvreader %}
-<a>{{ row }}</a>
+
+<tr>
+<td>{{ row[0] }}</td>
+<td>{{ row[1] }}</td>
+<tr>
+
 {% endfor %}
+</table>
+</body>
+</html>

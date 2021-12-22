@@ -1,14 +1,10 @@
-from itertools import count
-from flask import render_template, redirect, url_for, flash, request, session
-from flask.templating import render_template_string
+from flask import render_template, redirect, url_for, flash, request
 from flask_login.utils import logout_user
 from main import app, db
 from main.form import loginform, registerform
 from main.model import login, students
 from flask_login import login_user, logout_user, login_required, current_user
 from flask.helpers import flash
-from functools import wraps
-from sqlalchemy.orm.session import Session
 import os
 import csv
 
@@ -33,16 +29,14 @@ def start():
 @app.route('/record')
 @login_required
 def record():
-    files = os.listdir("/main/database/")
+    files = os.listdir("main/database/")
     return render_template('/dashboard/record.html',files=files)
 
 @app.route('/show_file/<string:fname>')
 @login_required
 def show_file(fname):
     file = open("main/database/" + fname)
-    print(type(file))
     csvreader = csv.reader(file)
-    
     return render_template('/dashboard/show_file.html', csvreader=csvreader)
 
 @app.route('/student', methods=['GET','POST'])
