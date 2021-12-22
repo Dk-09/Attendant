@@ -50,7 +50,11 @@ def student():
 def delete_student(ids, name):
     path = os.getcwd()
     fullpath = path + "/main/img/" + name.strip() + ".jpg"
+    fullpath2 = path + "/main/database2/" + name.strip() + ".csv"
+    print(fullpath2)
+    print(fullpath)
     os.remove(fullpath)
+    os.remove(fullpath2)
     students.query.filter_by(id=ids).delete()
     db.session.commit()
     
@@ -90,6 +94,9 @@ def register_page():
         user_to_create = students(name = form.name.data,mail = form.mail.data,enroll_no=form.enroll_no.data,roll_no=form.roll_no.data)
         db.session.add(user_to_create)
         db.session.commit()
+        path = "main/database2/"
+        with open(os.path.join(path,form.name.data)+".csv", 'w') as e:
+            pass
         flash('User Added', 'info')
         
     if form.errors != {}:
