@@ -20,7 +20,10 @@ while True:
         path = os.getcwd()
         path = path + "/main/img/"
         os.chdir(path)
-        img_name = sys.argv[1] + ".jpg"
+        sys.argv.pop(0)
+        sorted_name = " ".join(sys.argv)
+        img_name = sorted_name + ".jpg"
+        print("[*] creating file: " + img_name)
         cv2.imwrite(img_name, frame)
         os.chdir("../../")
         break

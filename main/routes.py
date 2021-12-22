@@ -51,10 +51,13 @@ def delete_student(ids, name):
     path = os.getcwd()
     fullpath = path + "/main/img/" + name.strip() + ".jpg"
     fullpath2 = path + "/main/database2/" + name.strip() + ".csv"
-    print(fullpath2)
     print(fullpath)
+    print(fullpath2)
     os.remove(fullpath)
     os.remove(fullpath2)
+    print("[+] Removing: " + fullpath)
+    print("[+] Removing: " + fullpath2)
+    print("[+] Deleted sucessfully")
     students.query.filter_by(id=ids).delete()
     db.session.commit()
     
