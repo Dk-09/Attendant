@@ -5,8 +5,9 @@ from main.form import loginform, registerform
 from main.model import login, students
 from flask_login import login_user, logout_user, login_required, current_user
 from flask.helpers import flash
-import os
-import csv
+import os, csv
+from main.ap import start_face_recognition
+from main.cam import camera
 
 @app.route('/')
 @app.route('/start', methods=['GET','POST'])
@@ -19,7 +20,7 @@ def start():
             print("[*] Making img file...")
         dir = os.listdir(path_to_img)
         if len(dir) > 0:
-            os.system("python3 main/ap.py")
+            start_face_recognition()
         else:
             return redirect(url_for('register_page'))
     else:
@@ -51,8 +52,6 @@ def delete_student(ids, name):
     path = os.getcwd()
     fullpath = path + "/main/img/" + name.strip() + ".jpg"
     fullpath2 = path + "/main/database2/" + name.strip() + ".csv"
-    print(fullpath)
-    print(fullpath2)
     os.remove(fullpath)
     os.remove(fullpath2)
     print("[+] Removing: " + fullpath)
@@ -67,13 +66,14 @@ def delete_student(ids, name):
 @app.route('/logout')
 def logout():
     logout_user()
+    print("[-] Logging out...")
     return redirect(url_for('loginpage'))
 
 
 @app.route('/login', methods=['GET','POST'])
 def loginpage(): 
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('start'))
     else:
         form = loginform()
         if form.validate_on_submit():
@@ -93,13 +93,14 @@ def register_page():
     form = registerform()
     if form.validate_on_submit():
         if form.name.data:
-            os.system(f"python3 main/cam.py {form.name.data}")
+            camera(form.name.data)
         user_to_create = students(name = form.name.data,mail = form.mail.data,enroll_no=form.enroll_no.data,roll_no=form.roll_no.data)
         db.session.add(user_to_create)
         db.session.commit()
         path = "main/database2/"
         with open(os.path.join(path,form.name.data)+".csv", 'w') as e:
             pass
+        print("[+] creating file: " + form.name.data + ".csv")
         flash('User Added', 'info')
         
     if form.errors != {}:

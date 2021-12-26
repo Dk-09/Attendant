@@ -8,11 +8,12 @@ def start_face_recognition():
     images = []
     names = []
     myList = os.listdir(path)
+    print(myList)
     for element in myList:
         print("[+] Loading Images : ", element)
 
     for cl in myList:
-        curImg = cv2.imread(f'{path}//{cl}')
+        curImg = cv2.imread(f'{path}/{cl}')
         images.append(curImg)
         names.append(os.path.splitext(cl)[0])
     print("[+] Loadig Names : " ,names)
@@ -48,7 +49,7 @@ def start_face_recognition():
             matchIndex = np.argmin(faceDis)
 
             if matches[matchIndex]:
-                name = names[matchIndex].upper()
+                name = names[matchIndex]
                 print(name)
                 y1,x2,y2,x1 = faceLoc
                 y1, x2, y2, x1 = y1*4, x2*4, y2*4, x1*4
@@ -66,5 +67,3 @@ def start_face_recognition():
     cap.release()
     
     cv2.destroyAllWindows()
-
-start_face_recognition()
