@@ -30,13 +30,13 @@ def start():
 @app.route('/record')
 @login_required
 def record():
-    files = os.listdir("main/database/")
+    files = os.listdir("main/db1/")
     return render_template('/dashboard/record.html',files=files)
 
 @app.route('/show_file/<string:fname>')
 @login_required
 def show_file(fname):
-    file = open("main/database/" + fname)
+    file = open("main/db1/" + fname)
     csvreader = csv.reader(file)
     return render_template('/dashboard/show_file.html', csvreader=csvreader)
 
@@ -51,7 +51,7 @@ def student():
 def delete_student(ids, name):
     path = os.getcwd()
     fullpath = path + "/main/img/" + name.strip() + ".jpg"
-    fullpath2 = path + "/main/database2/" + name.strip() + ".csv"
+    fullpath2 = path + "/main/db2/" + name.strip() + ".csv"
     os.remove(fullpath)
     os.remove(fullpath2)
     print("[+] Removing: " + fullpath)
@@ -97,7 +97,7 @@ def register_page():
         user_to_create = students(name = form.name.data,mail = form.mail.data,enroll_no=form.enroll_no.data,roll_no=form.roll_no.data)
         db.session.add(user_to_create)
         db.session.commit()
-        path = "main/database2/"
+        path = "main/db2/"
         with open(os.path.join(path,form.name.data)+".csv", 'w') as e:
             pass
         print("[+] creating file: " + form.name.data + ".csv")
