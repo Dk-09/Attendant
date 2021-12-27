@@ -4,8 +4,16 @@ import face_recognition
 import os
 import datetime
 import csv
+import threading
 
 def start_face_recognition(): 
+    def box(faceLoc,img,name):
+        y1,x2,y2,x1 = faceLoc
+        y1, x2, y2, x1 = y1*4, x2*4, y2*4, x1*4
+        cv2.rectangle(img,(x1,y1),(x2,y2),(0,255,0),2)
+        cv2.rectangle(img,(x1,y2-35),(x2,y2),(0,255,0),cv2.FILLED)
+        cv2.putText(img,name,(x1+6,y2-6),cv2.FONT_HERSHEY_COMPLEX_SMALL,1,(255,255,255),2)
+
     path = os.getcwd() + "/main/img"
     images = []
     names = []
@@ -58,7 +66,10 @@ def start_face_recognition():
 
                 if matches[matchIndex]:
                     name = names[matchIndex]
-                    if name not in marked:
+                    t1 = threading.Thread(target=box,args=(faceLoc,img,name))
+                    t1.start()
+                    
+                    if name not in marked:                                
                         writer1 = csv.writer(db1)
                         date1 = datetime.datetime.today().strftime("%d %B %Y")
                         time1 = datetime.datetime.today().strftime("%I:%M %p")
@@ -69,20 +80,16 @@ def start_face_recognition():
                             time2 = datetime.datetime.today().strftime("%I:%M %p")
                             writer2.writerow((date2, time2, name))
                         marked.append(name)
+                        
                     else:
                         pass
-
-                    y1,x2,y2,x1 = faceLoc
-                    y1, x2, y2, x1 = y1*4, x2*4, y2*4, x1*4
-                    cv2.rectangle(img,(x1,y1),(x2,y2),(0,255,0),2)
-                    cv2.rectangle(img,(x1,y2-35),(x2,y2),(0,255,0),cv2.FILLED)
-                    cv2.putText(img,name,(x1+6,y2-6),cv2.FONT_HERSHEY_COMPLEX_SMALL,1,(255,255,255),2)
 
             cv2.imshow("Webcam", img)
             k = cv2.waitKey(1)
 
             if k%256 == 27 or k%256 == 113:
                 print("[-] Escape hit closing app...")
+                t1.join()
                 break   
 
     cap.release()

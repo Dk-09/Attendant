@@ -19,10 +19,6 @@
 
 
 <style>
-{% block class %}
-
-{% endblock %}
-
 body,h1,h2,h3,h4,h5 
 {
   font-family: "Poppins", sans-serif;
@@ -39,18 +35,14 @@ body
 {
   opacity:1
 }
-.bottom-left
-{
-  position:absolute;
-  bottom:40px;
-  left: auto;
-  max-width:fit-content;
-}
 .logo
 {
   font-family: 'Courgette', cursive;
   font-size: 30px;
 }
+{% block class %}
+
+{% endblock %}
 </style>
 
 </head>
@@ -66,8 +58,10 @@ body
     <a href="{{ url_for('record') }}" class="w3-bar-item w3-button w3-hover-white">Record</a>
     <a href="{{ url_for('register_page') }}" class="w3-bar-item w3-button w3-hover-white">New Admission</a>
     <a href="{{ url_for('student') }}" class="w3-bar-item w3-button w3-hover-white">Students</a>
-    <a href="{{ url_for('logout') }}" class="w3-bar-item w3-button w3-hover-white ">Logout</a>
-    <a href="{{ url_for('shutdown') }}" class="w3-bar-item w3-button w3-hover-white bottom-left ">shutdown</a>
+    <a href="{{ url_for('logout') }}" class="w3-bar-item w3-button w3-hover-white">Logout</a>
+    <a href="{{ url_for('shutdown') }}" class="w3-bar-item w3-button w3-hover-white">shutdown</a>
+    
+    
   </div>
 </nav>
 
