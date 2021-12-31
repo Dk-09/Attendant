@@ -16,7 +16,7 @@ def start():
         path_to_img = os.getcwd() + "/main/img/"
         if not os.path.exists(path_to_img):
             os.mkdir(path_to_img)
-            print("[*] Making img file...")
+            print("\033[92m [*] Making img file...")
         dir = os.listdir(path_to_img)
         if len(dir) > 0:
             start_face_recognition()
@@ -53,9 +53,9 @@ def delete_student(ids, name):
     fullpath2 = path + "/main/db2/" + name.strip() + ".csv"
     os.remove(fullpath)
     os.remove(fullpath2)
-    print("[+] Removing: " + fullpath)
-    print("[+] Removing: " + fullpath2)
-    print("[+] Deleted sucessfully")
+    print("\033[92m [+] Removing: " + fullpath)
+    print("\033[92m [+] Removing: " + fullpath2)
+    print("\033[92m [+] Deleted sucessfully")
     students.query.filter_by(id=ids).delete()
     db.session.commit()
     
@@ -65,7 +65,7 @@ def delete_student(ids, name):
 @app.route('/logout')
 def logout():
     logout_user()
-    print("[-] Logging out...")
+    print("\033[33m [-] Logging out...")
     return redirect(url_for('loginpage'))
 
 
@@ -99,7 +99,7 @@ def register_page():
         path = "main/db2/"
         with open(os.path.join(path,form.name.data)+".csv", 'w') as e:
             pass
-        print("[+] creating file: " + form.name.data + ".csv")
+        print("\033[92m [+] creating file: " + form.name.data + ".csv")
         return redirect(url_for('student'))
         
     if form.errors != {}:

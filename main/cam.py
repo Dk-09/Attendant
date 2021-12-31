@@ -10,7 +10,7 @@ def camera():
     while True:
         ret, frame = cam.read()
         if not ret:
-            print("failed to grab frame")
+            print("\033[91m [-] failed to grab frame : Remove image and csv file from 'db1' and 'img' folder in main")
             break
         cv2.imshow("camera", frame)
 
@@ -22,10 +22,9 @@ def camera():
             os.chdir(path)
             sys.argv.pop(0)
             sorted_name = " ".join(sys.argv)
-            print("sorted = " + sorted_name)
             print(type(sorted_name))
             img_name = sorted_name + ".jpg"
-            print("[*] creating file: " + img_name)
+            print("\033[92m [*] creating file: " + img_name)
             cv2.imwrite(img_name, frame)
             os.chdir("../../")
             break

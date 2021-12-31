@@ -4,30 +4,22 @@ import face_recognition
 import os
 import datetime
 import csv
-import threading
 
 def start_face_recognition(): 
-    def box(faceLoc,img,name):
-        y1,x2,y2,x1 = faceLoc
-        y1, x2, y2, x1 = y1*4, x2*4, y2*4, x1*4
-        cv2.rectangle(img,(x1,y1),(x2,y2),(0,255,0),2)
-        cv2.rectangle(img,(x1,y2-35),(x2,y2),(0,255,0),cv2.FILLED)
-        cv2.putText(img,name,(x1+6,y2-6),cv2.FONT_HERSHEY_COMPLEX_SMALL,1,(255,255,255),2)
 
     path = os.getcwd() + "/main/img"
     images = []
     names = []
     marked = []
     myList = os.listdir(path)
-    print(myList)
     for element in myList:
-        print("[+] Loading Images : ", element)
+        print("\033[92m [+] Loading Images : ", element)
 
     for cl in myList:
         curImg = cv2.imread(f'{path}/{cl}')
         images.append(curImg)
         names.append(os.path.splitext(cl)[0])
-    print("[+] Loadig Names : " ,names)
+    print("\033[92m [+] Loadig Names : " ,names)
 
     def findEncoding(images):
         encodeList = []
@@ -37,12 +29,12 @@ def start_face_recognition():
                 encode = face_recognition.face_encodings(img)[0] # finding face encoding
                 encodeList.append(encode)
             except:
-                print("[-] Error finding face retake the image : " + name)
+                print("\033[91m [-] Error finding face retake the image : " + name)
             
         return encodeList
 
     encodeListKnown = findEncoding(images)
-    print("[+] Encoding done")
+    print("\033[92m [+] Encoding done")
 
     cap = cv2.VideoCapture(0) # starting stream
 
@@ -66,8 +58,11 @@ def start_face_recognition():
 
                 if matches[matchIndex]:
                     name = names[matchIndex]
-                    t1 = threading.Thread(target=box,args=(faceLoc,img,name))
-                    t1.start()
+                    y1,x2,y2,x1 = faceLoc
+                    y1, x2, y2, x1 = y1*4, x2*4, y2*4, x1*4
+                    cv2.rectangle(img,(x1,y1),(x2,y2),(0,255,0),2)
+                    cv2.rectangle(img,(x1,y2-35),(x2,y2),(0,255,0),cv2.FILLED)
+                    cv2.putText(img,name,(x1+6,y2-6),cv2.FONT_HERSHEY_COMPLEX_SMALL,1,(255,255,255),2)
                     
                     if name not in marked:                                
                         writer1 = csv.writer(db1)
@@ -88,8 +83,8 @@ def start_face_recognition():
             k = cv2.waitKey(1)
 
             if k%256 == 27 or k%256 == 113:
-                print("[-] Escape hit closing app...")
-                t1.join()
+                print("\033[33m [-] Escape hit closing app...")
+               
                 break   
 
     cap.release()
