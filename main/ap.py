@@ -93,5 +93,4 @@ def start_face_recognition():
                 break   
 
     cap.release()
-    
     cv2.destroyAllWindows()
