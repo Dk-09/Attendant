@@ -22,7 +22,6 @@ def camera():
             os.chdir(path)
             sys.argv.pop(0)
             sorted_name = " ".join(sys.argv)
-            print(type(sorted_name))
             img_name = sorted_name + ".jpg"
             print("\033[92m [*] creating file: " + img_name)
             cv2.imwrite(img_name, frame)

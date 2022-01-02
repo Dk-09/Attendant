@@ -21,19 +21,22 @@ def start_face_recognition():
         names.append(os.path.splitext(cl)[0])
     print("\033[92m [+] Loadig Names : " ,names)
 
-    def findEncoding(images):
+    def findEncoding(images,names):
         encodeList = []
+        error = []
         for img,name in zip(images,names):
             img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB) # converting stored image to RGB
             try:
                 encode = face_recognition.face_encodings(img)[0] # finding face encoding
                 encodeList.append(encode)
-            except:
-                print("\033[91m [-] Error finding face retake the image : " + name)
-            
+            except:            
+                error.append(name)
+        if error:
+            print("\033[91m [-] Error finding face, retake images of : ", error)
+            exit()                
         return encodeList
 
-    encodeListKnown = findEncoding(images)
+    encodeListKnown = findEncoding(images,names)
     print("\033[92m [+] Encoding done")
 
     cap = cv2.VideoCapture(0) # starting stream
