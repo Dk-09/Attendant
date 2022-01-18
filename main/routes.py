@@ -7,6 +7,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 from flask.helpers import flash
 import os, csv
 from main.ap import start_face_recognition
+from main.send_data import send
 
 @app.route('/')
 @app.route('/start', methods=['GET','POST'])
@@ -110,6 +111,7 @@ def register_page():
 @app.route('/shutdown')
 @login_required
 def shutdown():
+    send()
     logout_user()
     func = request.environ.get('werkzeug.server.shutdown')
     func()
