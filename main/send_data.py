@@ -7,7 +7,6 @@ def send():
     
     filename =  datetime.datetime.now()
     file_name = 'main/db1/' + filename.strftime("%d %B %Y")
-    print(file_name)
 
     s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     s.connect((server,port))

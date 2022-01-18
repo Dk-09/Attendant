@@ -18,13 +18,13 @@ else:
     os.chdir('db')
 
 f = open(d,'wb')
-
-msg, add = s.accept()
 while True:
-    data = msg.recv(2000)
-    while data:
-        f.write(data)
+    msg, add = s.accept()
+    while True:
         data = msg.recv(2000)
-    f.close()
-    break
+        while data:
+            f.write(data)
+            data = msg.recv(2000)
+        f.close()
+        break
 
