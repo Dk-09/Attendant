@@ -22,7 +22,7 @@ A tool that helps you keep the :closed_book: (record) of students that are prese
 ### linux :-
 
 ```
-sudo apt install make
+sudo apt install make cmake build-essential
 ```
 
 ```
