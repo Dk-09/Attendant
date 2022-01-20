@@ -1,73 +1,142 @@
+<!--
+
+    This template is not made by me, it is from  :  https://github.com/puikinsh/CoolAdmin
+
+-->
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<title>
-{% block title %}
-    
-{% endblock %}
-</title>
-{% block import %}
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
 
-{% endblock %}
-<link rel="icon" type="image/png" href="/static/login/images/icons/favicon.ico"/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="static/record/css/style.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-<link rel="stylesheet" type="text/css" href="static/record/css/bootstrap.css">
+    <!-- Title Page-->
+    {% block title %} {% endblock %}
 
+    <!-- Add icon -->
+    <link rel="icon" type="image/png" href="/static/images/icons/favicon.ico"/>
 
-<style>
-body,h1,h2,h3,h4,h5 
-{
-  font-family: "Poppins", sans-serif;
-}
-body 
-{
-  font-size:16px;
-}
-.w3-half img
-{
-  margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer
-}
-.w3-half img:hover
-{
-  opacity:1
-}
-.logo
-{
-  font-family: 'Courgette', cursive;
-  font-size: 30px;
-}
-{% block class %}
+    <!-- Fontfaces CSS-->
+    <link href="static/css/font-face.css" rel="stylesheet" media="all">
+    <link href="static/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="static/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="static/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
-{% endblock %}
-</style>
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS-->
+    <link href="static/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="static/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="static/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="static/vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="static/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="static/vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="static/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="static/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="static/css/theme.css" rel="stylesheet" media="all">
 
 </head>
-<body>
 
-<!-- Sidebar/menu -->
-<nav class="w3-sidebar {% block color %} {% endblock %} w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:250px;"><br>
-  <div class="w3-container">
-    <h3 class="w3-padding-64 logo"><b><a href="{{ url_for('start') }}" style="text-decoration: none;">Attendant</a></b></h3>
-  </div>
-  <div class="w3-bar-block">
-    <a href="{{ url_for('start') }}" class="w3-bar-item w3-button w3-hover-white">Start</a>
-    <a href="{{ url_for('record') }}" class="w3-bar-item w3-button w3-hover-white">Record</a>
-    <a href="{{ url_for('register_page') }}" class="w3-bar-item w3-button w3-hover-white">New Admission</a>
-    <a href="{{ url_for('student') }}" class="w3-bar-item w3-button w3-hover-white">Students</a>
-    <a href="{{ url_for('logout') }}" class="w3-bar-item w3-button w3-hover-white">Logout</a>
-    <a href="{{ url_for('shutdown') }}" class="w3-bar-item w3-button w3-hover-white">shutdown</a>
-    
-    
-  </div>
-</nav>
+<body class="animsition">
+    <div class="page-wrapper">
 
-{% block content %}
+        <!-- MENU SIDEBAR-->
+        <aside class="menu-sidebar d-none d-lg-block">
+            <div class=" logo title-1">
+                <a href= "index.html" style="font-family: 'Kaushan Script', cursive;color: #4E4E4E;">
+                    Attendant
+                </a>
+            </div>
+            <div class="menu-sidebar__content js-scrollbar1">
+                <nav class="navbar-sidebar">
+                    <ul class="list-unstyled navbar__list">
+			<li {% block mark_start %} {% endblock %} >
+                            <a class="js-arrow" href="{{ url_for('start') }}">
+                                <i class="fas fa-play"></i>Start</a>
+                        </li>
+                        <li {% block mark_record %} {% endblock %} >
+                            <a href="{{ url_for('record') }}">
+                                <i class="fas fa-book"></i>Record</a>
+                        </li>
+                        <li {% block mark_register_page %} {% endblock %} >
+                            <a  href="{{ url_for('register_page') }}">
+                                <i class="far fa-folder-open"></i>New Admission</a>
+                        </li>
+                        <li {% block mark_student %} {% endblock %} >
+                            <a  href="{{ url_for('student') }}">
+                                <i class="fas fa-database"></i>Students</a>
+                        </li>
+                        <li>
+                            <a  href="{{ url_for('logout') }}">
+                                <i class="fas fa-sign-out-alt"></i>Logout</a>
+                        </li>
+                        <li>
+                            <a  href="{{ url_for('shutdown') }}">
+                                <i class="fas fa-power-off"></i>Shutdown</a>
+                        </li>
 
-{% endblock %}
+                        
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <!-- END MENU SIDEBAR-->
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+        		{% block content %}
+			{% endblock %}
+                    </div>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT-->
+            <!-- END PAGE CONTAINER-->
+        </div>
+
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="static/vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="static/vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="static/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="static/vendor/slick/slick.min.js">
+    </script>
+    <script src="static/vendor/wow/wow.min.js"></script>
+    <script src="static/vendor/animsition/animsition.min.js"></script>
+    <script src="static/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="static/vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="static/vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="static/vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="static/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="static/vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="static/vendor/select2/select2.min.js">
+    </script>
+
+    <!-- Main JS-->
+    <script src="static/js/main.js"></script>
 
 </body>
+
 </html>
+<!-- end document-->

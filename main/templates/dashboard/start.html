@@ -1,91 +1,12 @@
 {% extends 'base.html' %}
-{% block title %}
-App
-{% endblock %}
-
-{% block color %}
-w3-custom3
-{% endblock %}
-
-{% block import %}
-<link rel="stylesheet" type="text/css" href="static/register/css/main.css">
-{% endblock %}
-
-{% block class %}
-
-.conatiner 
-{
-	width: 90%;
-	min-height: 100%;
-	padding: 15px;
-	
-	background: rgb(0,0,0);
-	background: linear-gradient(100deg, rgba(0,0,0,1) 0%, rgba(113,113,201,1) 0%, rgba(25,244,157,1) 110%);
-
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
-	margin-left: 260px;
-}
-
-.contact-form-btn {
-	min-width: 250px;
-	height: 80px;
-	margin-right: 80px;
-	border-radius: 10px;
-	border: solid white;
-	font-family: Montserrat-Bold;
-	font-size: 40px;
-	line-height: 1.5;
-	color: #fff;
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-  
-	-webkit-transition: all 0.4s;
-	-o-transition: all 0.4s;
-	-moz-transition: all 0.4s;
-	transition: all 0.4s;
-  }
-
-  .contact-form-btn i {
-	margin-left: 7px;
-  
-	-webkit-transition: all 0.4s;
-	-o-transition: all 0.4s;
-	-moz-transition: all 0.4s;
-	transition: all 0.4s;
-  }
-  
-  .contact-form-btn:hover {
-	background-color: white;
-	color:black
-  }
-  
-  .contact-form-btn:hover i {
-	-webkit-transform: translateX(10px);
-	-moz-transform: translateX(10px);
-	-ms-transform: translateX(10px);
-	-o-transform: translateX(10px);
-	transform: translateX(10px);
-  }
-
-{% endblock %}
-
 
 {% block content %}
-	<div class="conatiner">
-		<form action="/start" method="POST">
-			<button class="contact-form-btn"> start </button>
-		</form>
-	</div>
+
+
+{% block mark_start %}
+class="active has-sub"
 {% endblock %}
+
+
+{% endblock %}
+
