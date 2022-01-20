@@ -16,7 +16,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    {% block title %} {% endblock %}
+    <title>{% block title %} {% endblock %}</title>
 
     <!-- Add icon -->
     <link rel="icon" type="image/png" href="/static/images/icons/favicon.ico"/>
@@ -62,19 +62,19 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-			<li {% block mark_start %} {% endblock %} >
+			<li class="{% block mark_start %} {% endblock %}" >
                             <a class="js-arrow" href="{{ url_for('start') }}">
                                 <i class="fas fa-play"></i>Start</a>
                         </li>
-                        <li {% block mark_record %} {% endblock %} >
+                        <li class="{% block mark_record %} {% endblock %}" >
                             <a href="{{ url_for('record') }}">
                                 <i class="fas fa-book"></i>Record</a>
                         </li>
-                        <li {% block mark_register_page %} {% endblock %} >
+			<li class="{%block mark_register_page %} {% endblock %}" >
                             <a  href="{{ url_for('register_page') }}">
                                 <i class="far fa-folder-open"></i>New Admission</a>
                         </li>
-                        <li {% block mark_student %} {% endblock %} >
+                        <li class="{% block mark_student %} {% endblock %}" >
                             <a  href="{{ url_for('student') }}">
                                 <i class="fas fa-database"></i>Students</a>
                         </li>

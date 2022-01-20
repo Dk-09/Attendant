@@ -1,82 +1,37 @@
 {% extends 'base.html' %}
-{% block title %}
-Home
-{% endblock %}
 
-{% block color %}
-w3-custom2
-{% endblock %}
+{% block title %} Record {% endblock %}
 
-{% block import %}
-{% endblock %}
-
-{% block class %}
-
-.container 
-{
-	width: 82%;
-	min-height: 100vh;
-	padding: 15px;	
-	background: -webkit-linear-gradient(to right,#9786f0 , #fbc7d4);  
-	background: linear-gradient(to right, #9786f0 ,#fbc7d4);  
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
-	margin-left: 260px;
-}
-.container2{
-	width: 900px;
-	height: auto;
-	background: #fff;
-	border-radius: 10px;
-	overflow: hidden;  
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: center;
-	text-align:center;	
-	padding : 20px;
-}
+{% block mark_student %}
+active has-sub
 {% endblock %}
 
 {% block content %}
-	<div class="container">
-		<div class="container2">
-			<table class="table table-borderless table-condensed table-hover">			
-				
-				<thead>
-					<tr>
-						<th scope="col">Roll number</th>					
-						<th scope="col">Name</th>
-						<th scope="col">Enrollment number</th>				
-						<th scope="col">Delete</th>
-					</tr>
-				</thead>
 
-				<tbody>
-					{% for item in items %}
-					<form method="POST" action="{{ url_for('delete_student', ids=item.id, name=item.name) }}">
-						<tr>						
-							<td>{{ item.roll_no }}</td>								
-							<td>{{ item.name }}</td>						
-							<td>{{ item.enroll_no }}</td>							
-							<td>								
-								<button class="btn btn-outline btn-danger">delete</button>
-							</td>							
-						</tr>						
-				</tbody>
-				</form>
-				{% endfor %}			
-			</table>
-		</div>
-	</div>
+<table>
+    <thead>
+	<tr>
+	   <th scope="col">Roll number</th>
+	   <th scope="col">Name</th>
+	   <th scope="col">Enrollment number</th>
+	   <th scope="col">Delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+	{% for item in items %}
+	<form method="POST" action="{{ url_for('delete_student', ids=item.id, name=item.name) }}">
+	    <tr>
+	        <td>{{ item.roll_no }}</td>
+	        <td>{{ item.name }}</td>
+	        <td>{{ item.enroll_no }}</td>
+	        <td>
+		    <button class="btn btn-outline btn-danger">delete</button>
+		</td>
+	    </tr>
+    </tbody>
+	</form>
+	{% endfor %}
+</table>
+
 {% endblock %}
