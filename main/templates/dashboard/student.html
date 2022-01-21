@@ -8,30 +8,53 @@ active has-sub
 
 {% block content %}
 
-<table>
-    <thead>
-	<tr>
-	   <th scope="col">Roll number</th>
-	   <th scope="col">Name</th>
-	   <th scope="col">Enrollment number</th>
-	   <th scope="col">Delete</th>
-        </tr>
-    </thead>
+<section class="au-breadcrumb2">
+	<div class="container">
+		<div class="au-breadcrumb-content">
+			<div class="au-breadcrumb-left">
+				<span class="au-breadcrumb-span">You are here:</span>
+				<ul class="list-unstyled list-inline au-breadcrumb__list">
+					<li class="list-inline-item active">
+						Home
+					</li>
+					<li class="list-inline-item seprate">
+						<span>/</span>
+					</li>
+					<li class="list-inline-item">Students</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
 
-    <tbody>
-	{% for item in items %}
-	<form method="POST" action="{{ url_for('delete_student', ids=item.id, name=item.name) }}">
-	    <tr>
-	        <td>{{ item.roll_no }}</td>
-	        <td>{{ item.name }}</td>
-	        <td>{{ item.enroll_no }}</td>
-	        <td>
-		    <button class="btn btn-outline btn-danger">delete</button>
-		</td>
-	    </tr>
-    </tbody>
+<h3 class="title-5 m-b-35">Students</h3>
+<div class="table-responsive table-responsive-data2">
+	<table class="table table-data2">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Roll no</th>
+				<th>Enrollment number</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for item in items %}
+			<form method="POST" action="{{ url_for('delete_student', ids=item.id, name=item.name) }}"></form>
+				<tr class="tr-shadow">
+					<td>{{ item.name }}</td>
+					<td><span class="block-email">{{ item.mail }}</span></td>
+					<td>{{ item.roll_no }}</td>
+					<td>{{ item.enroll_no }}</td>
+					<td> <button class="btn btn-outline btn-danger">delete</button></td>
+					<tr class="spacer"></tr>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 	</form>
-	{% endfor %}
-</table>
+	
+</div>
 
 {% endblock %}

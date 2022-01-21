@@ -7,19 +7,54 @@ active has-sub
 {% endblock %}
 
 {% block content %}
-<table>			
-	<thead>
-		<tr>
-			<th scope="col">Record</th>					
-		</tr>
-	</thead>
 
-	<tbody>
-		{% for file in files %}
-		<tr>						
-			<td><a id="color" href="{{ url_for('show_file', fname=file) }}">{{ file }}</a></td>		
-		</tr>						
-	</tbody>
-		{% endfor %}			
-</table>
+<section class="au-breadcrumb2">
+	<div class="container">
+		<div class="au-breadcrumb-content">
+			<div class="au-breadcrumb-left">
+				<span class="au-breadcrumb-span">You are here:</span>
+				<ul class="list-unstyled list-inline au-breadcrumb__list">
+					<li class="list-inline-item active">
+						Home
+					</li>
+					<li class="list-inline-item seprate">
+						<span>/</span>
+					</li>
+					<li class="list-inline-item">Record</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="welcome p-t-12">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1 class="title-4">
+					Records
+				</h1>
+				<hr class="line-seprate">
+			</div>
+		</div>
+	</div>
+</section>
+
+<div class="col-lg-5">
+	<div class="au-card au-card--bg-blue au-card-top-countries m-b-30">
+		<div class="au-card-inner">
+			<div class="table-responsive" >
+				<table class="table table-top-countries" style="text-align: center;">
+					<tbody>
+						{% for file in files %}
+						<tr>						
+							<td><a class="title-6" href="{{ url_for('show_file', fname=file) }}">{{ file }}</a></td>		
+						</tr>						
+					</tbody>
+						{% endfor %}
+				</table>
+			</div>
+		</div>
+	</div>	
+</div>	
 {% endblock %}

@@ -197,6 +197,7 @@ a:focus,
 a:active {
     text-decoration: none;
     outline: none;
+    color: white;
 }
 
 a:hover,
@@ -291,7 +292,7 @@ section {
 }
 
 .main-content {
-    padding-top: 116px;
+    padding-top: 15px;
     min-height: 100vh;
 }
 
