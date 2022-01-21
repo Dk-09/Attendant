@@ -1564,7 +1564,7 @@ section {
 .menu-sidebar .logo {
     background: #ffffff;
     height: 100px;
-    padding: 0 35px;
+    padding-left: 0px; 
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -1596,7 +1596,7 @@ section {
 }
 
 .navbar-sidebar {
-    padding: 35px;
+    padding: 10px 35px 0;
     padding-bottom: 0;
 }
 
