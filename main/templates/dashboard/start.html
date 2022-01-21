@@ -6,6 +6,28 @@ active has-sub
 
 {% block content %}
 
+<section class="au-breadcrumb2">
+	<div class="container">
+		<div class="au-breadcrumb-content">
+			<div class="au-breadcrumb-left">
+				<span class="au-breadcrumb-span">You are here:</span>
+				<ul class="list-unstyled list-inline au-breadcrumb__list">
+					<li class="list-inline-item active">
+						Home
+					</li>
+					<li class="list-inline-item seprate">
+						<span>/</span>
+					</li>
+					<li class="list-inline-item">start</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<form action="/start" method="POST">
+    <button class="contact-form-btn"> start </button>
+</form>
 
 {% endblock %}
 

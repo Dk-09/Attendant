@@ -39,22 +39,23 @@ active has-sub
 		</div>
 	</div>
 </section>
-
+{% for file in files %}
 <div class="col-lg-5">
 	<div class="au-card au-card--bg-blue au-card-top-countries m-b-30">
 		<div class="au-card-inner">
 			<div class="table-responsive" >
 				<table class="table table-top-countries" style="text-align: center;">
 					<tbody>
-						{% for file in files %}
+						
 						<tr>						
 							<td><a class="title-6" href="{{ url_for('show_file', fname=file) }}">{{ file }}</a></td>		
 						</tr>						
 					</tbody>
-						{% endfor %}
+						
 				</table>
 			</div>
 		</div>
 	</div>	
-</div>	
+</div>
+{% endfor %}	
 {% endblock %}

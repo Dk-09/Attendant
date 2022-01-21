@@ -41,7 +41,7 @@ active has-sub
 		</thead>
 		<tbody>
 			{% for item in items %}
-			<form method="POST" action="{{ url_for('delete_student', ids=item.id, name=item.name) }}"></form>
+			<form method="POST" action="{{ url_for('delete_student', ids=item.id, name=item.name) }}">
 				<tr class="tr-shadow">
 					<td>{{ item.name }}</td>
 					<td><span class="block-email">{{ item.mail }}</span></td>
@@ -51,10 +51,9 @@ active has-sub
 					<tr class="spacer"></tr>
 				</tr>
 			{% endfor %}
+			</form>
 		</tbody>
-	</table>
-	</form>
-	
+	</table>	
 </div>
 
 {% endblock %}

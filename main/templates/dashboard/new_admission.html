@@ -8,31 +8,65 @@ active has-sub
 
 {% block content %}
 
-<form method="POST" style="text-align: center;">
-    {{ form.hidden_tag() }}
-	<span>
-	    Enter information below
-	</span>
+<section class="au-breadcrumb2">
+	<div class="container">
+		<div class="au-breadcrumb-content">
+			<div class="au-breadcrumb-left">
+				<span class="au-breadcrumb-span">You are here:</span>
+				<ul class="list-unstyled list-inline au-breadcrumb__list">
+					<li class="list-inline-item active">
+						Home
+					</li>
+					<li class="list-inline-item seprate">
+						<span>/</span>
+					</li>
+					<li class="list-inline-item">Admission</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
 
-	{{ form.name( class="input1", placeholder="Name") }}
+<div class="col-lg-6">
+	<div class="card">
+		<div class="card-header"></div>
+		<div class="card-body">
+			<div class="card-title">
+				<h3 class="text-center title-2">Enter Details</h3>
+			</div>
+			<hr>
+			<form method="POST" novalidate="novalidate">
+				{{ form.hidden_tag() }}
+				<div class="form-group">
+					<label class="control-label mb-1">Full Name</label>	
+					{{ form.name( class="form-control" ) }}
+				</div>
+				<div class="form-group has-success">
+					<label for="cc-name" class="control-label mb-1">Email</label>	
+					{{ form.mail( class="form-control") }}
+				</div>
+				<div class="form-group">
+					<label for="cc-number" class="control-label mb-1">Enrollment number</label>					
+					{{ form.enroll_no( class="form-control")}}
+				</div>
+				<div class="form-group">
+					<label for="cc-number" class="control-label mb-1">Roll number</label>					
+					{{ form.roll_no( class="form-control")}}
+				<div>
+				<br>
+					{{ form.submit( class="btn btn-lg btn-info btn-block") }}					
+				</div>
+				{% with messages = get_flashed_messages(with_categories=true) %}
+					{% if messages %}
+						{% for category, message in messages %}
+							<h6 style="color: red;font-size: 15px;padding: 20px;">{{ message }}</h6>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+			</form>
+		</div>
+	</div>
+</div>
 
-	{{ form.mail( class="input1", placeholder="Email") }}
-
-	{{ form.enroll_no( class="input1", placeholder="Enrollment number")}}
-
-	{{ form.roll_no( class="input1", placeholder="Roll number")}}
-
-	<br>
-
-	{{ form.submit( class="contact1-form-btn", placeholder="Register") }}
-
-	{% with messages = get_flashed_messages(with_categories=true) %}
-	    {% if messages %}
-		{% for category, message in messages %}
-		    <h6 style="color: red;font-size: 15px;padding: 20px;">{{ message }}</h6>
-		{% endfor %}
-	    {% endif %}
-        {% endwith %}
-</form>
 
 {% endblock %}

@@ -15,6 +15,11 @@ class registerform(FlaskForm):
         if mail:
             raise ValidationError('Mail already exists! Please try a different mail')
 
+    def validate_name(self, name_to_check):
+        name = students.query.filter_by(name=name_to_check.data).first()
+        if name:
+            raise ValidationError('Name already exists! Please try a full name with middle name')
+
     def validate_enroll_no(self, enroll_no_to_check):
         enroll_no = students.query.filter_by(enroll_no=enroll_no_to_check.data).first()
         if enroll_no:

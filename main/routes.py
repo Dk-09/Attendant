@@ -111,7 +111,10 @@ def register_page():
 @app.route('/shutdown')
 @login_required
 def shutdown():
-    send()
+    try:
+        send()
+    except:
+        pass
     logout_user()
     func = request.environ.get('werkzeug.server.shutdown')
     func()
