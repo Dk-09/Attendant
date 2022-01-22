@@ -2,7 +2,7 @@ import socket
 import datetime
 
 def send():
-    server = '3.7.135.69'
+    server = '65.1.117.206'
     port = 2222
     
     filename =  datetime.datetime.now()
