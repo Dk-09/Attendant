@@ -17,7 +17,7 @@ if not os.path.isdir('db'):
 else:
     os.chdir('db')
 
-f = open(d,'wb')
+f = open(d,'ab')
 while True:
     msg, add = s.accept()
     while True:

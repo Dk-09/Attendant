@@ -34,9 +34,10 @@ while ($csvcontents = fgetcsv($handle)) {
 echo '</table>';
 fclose($handle);
 }
-jj_readcsv('db/test2.csv');
+
+$file = 'db/'.$_GET['file_name'];
+jj_readcsv($file);
 ?>
 
 </body>
 </html>
-
