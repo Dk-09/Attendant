@@ -71,6 +71,14 @@
             
                             </form>    
                         </div>
+
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+			    {% if messages %}
+                                {% for category, message in messages %}
+				    <h6 style="color: red;font-size: 15px;padding: 20px;">{{ message }}</h6>
+				{% endfor %}
+			    {% endif %}
+                        {% endwith %}
                     </div>
                 </div>
             </div>
