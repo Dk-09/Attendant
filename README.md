@@ -13,7 +13,6 @@ A tool that helps you keep the :closed_book: (record) of students that are prese
 - Highly secure :lock:
 - Sends attendance to student automaticaly :incoming_envelope:
 - User friendly GUI :desktop_computer:
-- It's dockerise  :whale:
 
 ## How to install Attendant
 
@@ -39,18 +38,18 @@ python run.py
 
 ## Glimpse of Attendant
 
-_Login page of the website_
+_Debugger_
 
-![img 1](https://github.com/Dk-09/Dk-09/blob/main/1633008700134.jpg)
+![img 1](https://github.com/Dk-09/Dk-09/blob/main/1.png)
 
-_Page to add students_
+_Login page (username = admin, password = password)_
 
-![img 2](https://github.com/Dk-09/Dk-09/blob/main/1633008700138.jpg)
+![img 2](https://github.com/Dk-09/Dk-09/blob/main/2.png)
 
 _View all the students in database_
 
-![img 3](https://github.com/Dk-09/Dk-09/blob/main/1633008700130.jpg)
+![img 3](https://github.com/Dk-09/Dk-09/blob/main/6.png)
 
 _Face recognition_
 
-![img 4](https://github.com/Dk-09/Dk-09/blob/main/1633008700126.jpg)
+![img 4](https://github.com/Dk-09/Dk-09/blob/main/9.png)
