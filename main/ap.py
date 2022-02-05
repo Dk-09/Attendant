@@ -83,7 +83,7 @@ def start_face_recognition():
                         pass
 
             cv2.imshow("Webcam", img)
-            k = cv2.waitKey(1)
+            k = cv2.waitKey(25)
 
             if k%256 == 27 or k%256 == 113:
                 print("\033[33m [-] Escape hit closing app...")

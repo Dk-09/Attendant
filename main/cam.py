@@ -14,7 +14,7 @@ def camera():
             break
         cv2.imshow("camera", frame)
 
-        k = cv2.waitKey(1)
+        k = cv2.waitKey(25)
 
         if k%256 == 32:
             path = os.getcwd()
