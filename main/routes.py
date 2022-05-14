@@ -6,7 +6,6 @@ from main.model import login, students
 from flask_login import login_user, logout_user, login_required, current_user
 from flask.helpers import flash
 import os, csv
-from main.ap import start_face_recognition
 from main.send_data import send
 
 @app.route('/')
@@ -20,7 +19,7 @@ def start():
             print("\033[92m [*] Making img file...")
         dir = os.listdir(path_to_img)
         if len(dir) > 0:
-            start_face_recognition()
+            os.system(f"python3 main/ap.py")
         else:
             return redirect(url_for('register_page'))
     else:
@@ -80,6 +79,7 @@ def loginpage():
             attempted_user = login.query.filter_by(username=form.username.data).first()
             if attempted_user and attempted_user.check_password_correction(attempted_password=form.password.data):
                 login_user(attempted_user)
+                print("\033[92m [+] user looged in")
                 return redirect(url_for('start'))
             else:
                 flash("Incorrect username or password", category='danger')
@@ -116,7 +116,5 @@ def shutdown():
     except:
         pass
     logout_user()
-    func = request.environ.get('werkzeug.server.shutdown')
-    func()
     return "Shuting down...you can close this tab..."
 

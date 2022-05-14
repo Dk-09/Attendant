@@ -86,9 +86,10 @@ def start_face_recognition():
             k = cv2.waitKey(25)
 
             if k%256 == 27 or k%256 == 113:
-                print("\033[33m [-] Escape hit closing app...")
-               
+                print("\033[33m [-] Escape hit closing app...")               
                 break   
 
     cap.release()
     cv2.destroyAllWindows()
+    exit()
+start_face_recognition()

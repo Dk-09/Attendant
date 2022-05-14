@@ -29,5 +29,6 @@ def camera():
             break
     cam.release()
     cv2.destroyAllWindows()
+    exit()
 
 camera()
