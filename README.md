@@ -40,16 +40,16 @@ python run.py
 
 _Debugger_
 
-![img 1](https://github.com/Dk-09/Dk-09/blob/main/1.png)
+![img 1](https://github.com/Dk-09/Dk-09/blob/main/Attendant/1.png)
 
 _Login page (username = admin, password = password)_
 
-![img 2](https://github.com/Dk-09/Dk-09/blob/main/2.png)
+![img 2](https://github.com/Dk-09/Dk-09/blob/main/Attendant/2.png)
 
 _View all the students in database_
 
-![img 3](https://github.com/Dk-09/Dk-09/blob/main/6.png)
+![img 3](https://github.com/Dk-09/Dk-09/blob/main/Attendant/6.png)
 
 _Face recognition_
 
-![img 4](https://github.com/Dk-09/Dk-09/blob/main/9.png)
+![img 4](https://github.com/Dk-09/Dk-09/blob/main/Attendant/9.png)
